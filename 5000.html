@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate ₹5000</title>
+<style>
+  body, html { height:100%; margin:0; font-family:'Segoe UI',sans-serif; color:white; overflow:hidden; }
+  .slideshow-container {
+    position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-1;
+  }
+  .slideshow-container img {
+    position:absolute; width:100%; height:100%; object-fit:cover; opacity:0;
+    transition:opacity 1s ease-in-out;
+  }
+  .slideshow-container img.active { opacity:0.4; }
+  .center-content {
+    position:relative; top:30%; max-width:300px; margin:auto; text-align:center;
+    background:rgba(0,0,0,0.6); padding:20px; border-radius:10px;
+  }
+  h2 { color:#FFD700; margin-bottom:20px; }
+  select {
+    width:100%; padding:10px; margin-bottom:15px; border:none; border-radius:4px;
+  }
+  button {
+    padding:10px 20px; background:darkred; color:white; border:none;
+    border-radius:4px; cursor:pointer;
+  }
+  button:hover { background:crimson; }
+</style>
+</head>
+<body>
+
+<div class="slideshow-container">
+  <img src="K1.jpg" class="active" alt="Temple 1">
+  <img src="KD1.jpg" alt="Temple 2">
+  <img src="SC1.jpg" alt="Temple 3">
+  <img src="SK.jpg" alt="Temple 4">
+  <img src="SS2.jpg" alt="Temple 5">
+  <img src="tpty.jpg" alt="Temple 6">
+</div>
+
+<div class="center-content">
+  <h2>Donate ₹5000</h2>
+  <select id="templeSelect">
+    <option>KANIPAKAM VINAYAKA TEMPLE</option>
+    <option>KANAKA DURGA TEMPLE</option>
+    <option>SIMHACHALAM TEMPLE</option>
+    <option>SRI KALAHASTHI TEMPLE</option>
+    <option>SRISAILAM TEMPLE</option>
+    <option>TIRUMALA TIRUPATHI TEMPLE</option>
+  </select>
+  <button onclick="donate()">Donate Now</button>
+</div>
+
+<script>
+  function donate(){
+    const temple=document.getElementById('templeSelect').value;
+    alert('Thank you! Your ₹5000 donation to '+ temple +' is received.');
+    // Here you can redirect or do more
+  }
+
+  const images=document.querySelectorAll('.slideshow-container img');
+  let imgIndex=0;
+  setInterval(()=>{
+    images[imgIndex].classList.remove('active');
+    imgIndex=(imgIndex+1)%images.length;
+    images[imgIndex].classList.add('active');
+  },4000);
+</script>
+</body>
+</html>
