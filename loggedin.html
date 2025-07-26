@@ -107,9 +107,18 @@
 </div>
 <div class="dropdown-panel" id="sevasPanel">
   <div class="logo-temple-list">
-    <div class="logo-temple-item"><p>Pratyaksha Seva</p><button>Select</button></div>
-    <div class="logo-temple-item"><p>Paroksha Seva</p><button>Select</button></div>
-    <div class="logo-temple-item"><p>Darshanam</p><button>Select</button></div>
+    <div class="logo-temple-item">
+      <p>Pratyaksha Seva</p>
+      <button onclick="location.href='ptyseva.html'">Select</button>
+    </div>
+    <div class="logo-temple-item">
+      <p>Paroksha Seva</p>
+      <button onclick="location.href='prkseva.html'">Select</button>
+    </div>
+    <div class="logo-temple-item">
+      <p>Darshanam</p>
+      <button onclick="location.href='darshanam.html'">Select</button>
+    </div>
   </div>
 </div>
 <div class="center-content">
@@ -127,10 +136,11 @@
     "TIRUMALA TIRUPATHI TEMPLE"
   ];
   let templeIndex=0;
-  setInterval(()=> {
+  setInterval(()=>{
     templeIndex=(templeIndex+1)%templeNames.length;
     document.getElementById('templeName').textContent=templeNames[templeIndex];
   },3000);
+
   const images=document.querySelectorAll('.slideshow-container img');
   let imgIndex=0;
   setInterval(()=>{
@@ -138,12 +148,14 @@
     imgIndex=(imgIndex+1)%images.length;
     images[imgIndex].classList.add('active');
   },4000);
+
   function togglePanel(id){
     const panel=document.getElementById(id);
     const allPanels=document.querySelectorAll('.dropdown-panel');
     allPanels.forEach(p=>{if(p!==panel)p.style.display='none';});
     panel.style.display=panel.style.display==='block'?'none':'block';
   }
+
   document.addEventListener('click',function(e){
     if(!e.target.closest('nav') && !e.target.closest('.dropdown-panel')){
       document.querySelectorAll('.dropdown-panel').forEach(p=>p.style.display='none');
