@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Temple Portal</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body, html { height:100%; font-family:'Segoe UI',sans-serif; color:white; overflow-x:hidden; }
+  .slideshow-container {
+    position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-1;
+  }
+  .slideshow-container img {
+    position:absolute; width:110%; height:100%;
+    object-fit:cover; opacity:0;
+    transition:opacity 1s ease-in-out, transform 10s linear;
+  }
+  .slideshow-container img.active { opacity:1; transform:translateX(-5%); }
+  .center-content {
+    position:relative; top:50%; transform:translateY(-50%);
+    text-align:center; width:100%; padding:0 20px; z-index:1;
+  }
+  h1 { font-size:2em; margin-bottom:10px; text-shadow:1px 1px 4px rgba(0,0,0,0.8); }
+  .login-box {
+    background:rgba(0,0,0,0.7); padding:25px; border-radius:10px; width:280px; margin:auto; box-shadow:0 0 10px rgba(0,0,0,0.5);
+  }
+  .login-box input {
+    width:90%; margin:8px 0; padding:8px; border:none; border-radius:4px;
+  }
+  .login-box button {
+    margin-top:10px; padding:8px 15px; border:none; background:darkred; color:white; cursor:pointer; border-radius:4px; width:100%;
+  }
+  .login-box button:hover { background:crimson; }
+  .register-link { margin-top:10px; font-size:0.9em; }
+  .register-link a { color:#FFD700; text-decoration:none; }
+  .register-link a:hover { text-decoration:underline; }
+  footer {
+    position:fixed; bottom:0; width:100%; background:rgba(0,0,0,0.6); text-align:center;
+    padding:10px 0; font-size:0.9em; z-index:1;
+  }
+</style>
+</head>
+<body>
+<div class="slideshow-container">
+  <img src="temple3.png" class="active" alt="Temple 1">
+  <img src="temple4.png" alt="Temple 2">
+  <img src="temple5.png" alt="Temple 3">
+  <img src="temple6.png" alt="Temple 4">
+  <img src="temple7.png" alt="Temple 4">
+  <img src="tpty.jpg" alt="Temple 4">
+  <img src="KD1.jpg" alt="Temple 4">
+  <img src="K1.jpg" alt="Temple 4">
+
+</div>
+<div class="center-content">
+  <h1>Login to Temple Portal</h1>
+  <div class="login-box">
+    <input type="text" placeholder="Username" id="username">
+    <input type="password" placeholder="Password" id="password">
+    <button onclick="login()">Login</button>
+    <div class="register-link">New user? <a href="register.html">Register</a></div>
+  </div>
+</div>
+<footer>Customer Support | Privacy Policy | Terms & Conditions</footer>
+<script>
+  const images=document.querySelectorAll('.slideshow-container img');
+  let imgIndex=0;
+  setInterval(()=>{
+    images[imgIndex].classList.remove('active');
+    imgIndex=(imgIndex+1)%images.length;
+    images[imgIndex].classList.add('active');
+  },4000);
+  function login(){
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
+    if(user && pass){
+      window.location.href='loggedin.html';
+    } else {
+      alert('Please enter username & password');
+    }
+  }
+</script>
+</body>
+</html>

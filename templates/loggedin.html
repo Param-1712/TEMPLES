@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple Portal</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body, html { height:100%; font-family:'Segoe UI',sans-serif; color:white; overflow-x:hidden; }
+  .slideshow-container {
+    position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-1;
+  }
+  .slideshow-container img {
+    position:absolute; width:110%; height:100%;
+    object-fit:cover; opacity:0;
+    transition:opacity 1s ease-in-out, transform 10s linear;
+  }
+  .slideshow-container img.active { opacity:1; transform:translateX(-5%); }
+  nav {
+    width:100%; background:rgba(0,0,0,0.6); display:flex; justify-content:center;
+    padding:15px 0; position:fixed; top:0; z-index:2;
+  }
+  nav ul { list-style:none; display:flex; }
+  nav li { margin:0 20px; cursor:pointer; }
+  nav a { color:white; text-decoration:none; font-size:1em; transition:color 0.3s; }
+  nav a:hover { color:#FFD700; }
+  .dropdown-panel {
+    display:none; position:fixed; top:60px; left:50%; transform:translateX(-50%);
+    background:rgba(0,0,0,0.85); padding:20px; border-radius:10px; z-index:3;
+    max-height:70%; overflow-y:auto;
+  }
+  .logo-temple-list {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px;
+  }
+  .logo-temple-item {
+    background:rgba(255,255,255,0.1); padding:10px; border-radius:8px; text-align:center;
+  }
+  .logo-temple-item p { margin-bottom:8px; color:#FFD700; }
+  .logo-temple-item a {
+    display:inline-block; padding:5px 10px; background:darkred; color:white;
+    border:none; border-radius:4px; text-decoration:none; cursor:pointer;
+  }
+  .logo-temple-item a:hover { background:crimson; }
+  .logo-temple-item img {
+    width:60px; height:60px; margin-bottom:8px;
+  }
+  .center-content {
+    position:relative; top:120px; text-align:center; width:100%; padding:0 20px; z-index:1;
+  }
+  h1 { font-size:2.2em; margin-bottom:10px; text-shadow:1px 1px 4px rgba(0,0,0,0.8); }
+  .temple-name { font-size:1.5em; color:#FFD700; margin-bottom:30px; height:1.5em; text-shadow:1px 1px 4px rgba(0,0,0,0.8); }
+  footer {
+    position:fixed; bottom:0; width:100%; background:rgba(0,0,0,0.6); text-align:center;
+    padding:10px 0; font-size:0.9em; z-index:1;
+  }
+</style>
+</head>
+<body>
+<div class="slideshow-container">
+  <img src="/static/K1.jpg" class="active" alt="Temple 1">
+  <img src="/static/KD1.jpg" alt="Temple 2">
+  <img src="/static/SC1.jpg" alt="Temple 3">
+  <img src="/static/SK.jpg" alt="Temple 4">
+  <img src="/static/SS2.jpg" alt="Temple 5">
+  <img src="/static/tpty3.jpg" alt="Temple 6">
+</div>
+<nav>
+  <ul>
+    <li onclick="togglePanel('templesPanel')"><a>Temples</a></li>
+    <li onclick="togglePanel('sevasPanel')"><a>Sevas & Darshanam</a></li>
+    <li><a href="accommodation.html">Accommodation</a></li>
+    <li><a href="donations.html">Donations</a></li>
+  </ul>
+</nav>
+<div class="dropdown-panel" id="templesPanel">
+  <div class="logo-temple-list">
+    <div class="logo-temple-item">
+      <img src="/static/K1.jpg" alt="Temple">
+      <p>KANIPAKAM VINAYAKA TEMPLE</p>
+      <a href="{{ url_for('k') }}">Visit</a>
+    </div>
+    <div class="logo-temple-item">
+      <img src="/static/KD1.jpg" alt="Temple">
+      <p>KANAKA DURGA TEMPLE</p>
+      <a href="{{ url_for('kd') }}">Visit</a>
+    </div>
+    <div class="logo-temple-item">
+      <img src="/static/SC1.jpg" alt="Temple">
+      <p>SIMHACHALAM TEMPLE</p>
+      <a href="{{ url_for('sc') }}">Visit</a>
+    </div>
+    <div class="logo-temple-item">
+      <img src="/static/SK.jpg" alt="Temple">
+      <p>SRI KALAHASTHI TEMPLE</p>
+      <a href="{{ url_for('sk') }}">Visit</a>
+    </div>
+    <div class="logo-temple-item">
+      <img src="/static/SS2.jpg" alt="Temple">
+      <p>SRISAILAM TEMPLE</p>
+      <a href="{{ url_for('ss') }}">Visit</a>
+    </div>
+    <div class="logo-temple-item">
+      <img src="/static/tpty.jpg" alt="Temple">
+      <p>TIRUMALA TIRUPATHI TEMPLE</p>
+      <a href="{{ url_for('ttd') }}">Visit</a>
+    </div>
+  </div>
+</div>
+<div class="dropdown-panel" id="sevasPanel">
+  <div class="logo-temple-list">
+    <div class="logo-temple-item">
+      <p>Pratyaksha Seva</p>
+      <a href="ptyseva.html">Select</a>
+    </div>
+    <div class="logo-temple-item">
+      <p>Paroksha Seva</p>
+      <a href="prkseva.html">Select</a>
+    </div>
+    <div class="logo-temple-item">
+      <p>Darshanam</p>
+      <a href="darshanam.html">Select</a>
+    </div>
+  </div>
+</div>
+<div class="center-content">
+  <h1>WELCOME TO</h1>
+  <div class="temple-name" id="templeName">KANIPAKAM VINAYAKA TEMPLE</div>
+  <form action="{{ url_for('loggedin') }}">
+    <button type="submit" style="
+      padding:8px 16px;
+      background:darkred;
+      color:white;
+      border:none;
+      border-radius:4px;
+      cursor:pointer;
+      margin-top:20px;
+      font-size:1em;
+    ">Use Details</button>
+  </form>
+</div>
+<footer>Customer Support | Privacy Policy | Terms & Conditions</footer>
+<script>
+  const templeNames = [
+    "KANIPAKAM VINAYAKA TEMPLE",
+    "KANAKA DURGA TEMPLE",
+    "SIMHACHALAM TEMPLE",
+    "SRI KALAHASTHI TEMPLE",
+    "SRISAILAM TEMPLE",
+    "TIRUMALA TIRUPATHI TEMPLE"
+  ];
+  let templeIndex = 0;
+  setInterval(() => {
+    templeIndex = (templeIndex + 1) % templeNames.length;
+    document.getElementById('templeName').textContent = templeNames[templeIndex];
+  }, 3000);
+
+  const images = document.querySelectorAll('.slideshow-container img');
+  let imgIndex = 0;
+  setInterval(() => {
+    images[imgIndex].classList.remove('active');
+    imgIndex = (imgIndex + 1) % images.length;
+    images[imgIndex].classList.add('active');
+  }, 4000);
+
+  function togglePanel(id) {
+    const panel = document.getElementById(id);
+    const allPanels = document.querySelectorAll('.dropdown-panel');
+    allPanels.forEach(p => { if (p !== panel) p.style.display = 'none'; });
+    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+  }
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('nav') && !e.target.closest('.dropdown-panel')) {
+      document.querySelectorAll('.dropdown-panel').forEach(p => p.style.display = 'none');
+    }
+  });
+</script>
+</body>
+</html>

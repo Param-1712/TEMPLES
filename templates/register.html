@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body, html { height: 100%; font-family: 'Segoe UI', sans-serif; color: white; overflow-x: hidden; }
+
+  /* Background slideshow */
+  .slideshow-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1;
+  }
+  .slideshow-container img {
+    position: absolute; width: 110%; height: 100%;
+    object-fit: cover; opacity: 0;
+    transition: opacity 1s ease-in-out, transform 10s linear;
+  }
+  .slideshow-container img.active { opacity: 1; transform: translateX(-5%); }
+
+  .register-box {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    top: 50%; transform: translateY(-50%);
+  }
+
+  .register-box h2 { margin-bottom: 20px; color: #FFD700; }
+  .register-box input {
+    width: 90%; margin: 8px 0; padding: 8px;
+    border: none; border-radius: 4px;
+  }
+
+  .register-box button {
+    margin-top: 10px; padding: 8px 15px; border: none;
+    background: darkred; color: white; cursor: pointer; border-radius: 4px; width: 100%;
+  }
+  .register-box button:hover { background: crimson; }
+</style>
+</head>
+<body>
+
+<div class="slideshow-container">
+  <img src="temple3.png" class="active" alt="Temple 1">
+  <img src="temple4.png" alt="Temple 2">
+  <img src="temple5.png" alt="Temple 3">
+  <img src="temple6.png" alt="Temple 4">
+</div>
+
+<div class="register-box">
+  <h2>Register</h2>
+  <input type="text" id="fullname" placeholder="Full Name">
+  <input type="text" id="mobile" placeholder="Mobile Number">
+  <input type="email" id="email" placeholder="Email">
+  <button onclick="register()">Submit</button>
+</div>
+
+<script>
+  // Slideshow script
+  const images = document.querySelectorAll('.slideshow-container img');
+  let imgIndex = 0;
+  setInterval(() => {
+    images[imgIndex].classList.remove('active');
+    imgIndex = (imgIndex + 1) % images.length;
+    images[imgIndex].classList.add('active');
+  }, 4000);
+
+  // Register logic
+  function register() {
+    const name = document.getElementById('fullname').value;
+    const mobile = document.getElementById('mobile').value;
+    const email = document.getElementById('email').value;
+    if (name && mobile && email) {
+      // redirect after successful registration
+      window.location.href = 'loggedin.html';
+    } else {
+      alert('Please fill all fields');
+    }
+  }
+</script>
+
+</body>
+</html>
+ 
